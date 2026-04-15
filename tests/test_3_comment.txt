@@ -1,0 +1,30 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<pair<int, int>> Move(vector<pair<int, int>>& vec) {
+    if (vec.empty()) return {};
+
+    // Сортировка
+    sort(vec.begin(), vec.end());
+
+    // Используем индекс для записи
+    int j = 0;
+
+    for (size_t i = 1; i < vec.size(); i++) {
+        // Если пересекаются
+        if (vec[i].first <= vec[j].second) {
+            // Обновляем конец текущего объединенного интервала
+            vec[j].second = max(vec[j].second, vec[i].second);
+        } else {
+            // Если не пересекаются, двигаем указатель записи и копируем
+            j++;
+            vec[j] = vec[i];
+        }
+    }
+
+    // Отрезаем лишнее в конце
+    vec.resize(j + 1);
+    return vec;
+}

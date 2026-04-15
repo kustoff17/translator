@@ -1,0 +1,5 @@
+class Animal
+{
+  private:
+      float t = 23.44;
+}

@@ -1,0 +1,88 @@
+
+#ifndef TRANSLATOR_TOKENS_H
+#define TRANSLATOR_TOKENS_H
+#endif //TRANSLATOR_TOKENS_H
+
+enum TokenType
+{
+    CLASS = 256,
+    PROTECT,
+    PUBLIC,
+    INT,
+    FOR,
+    WHILE,
+    TRY,
+    CATCH,
+    FLOAT,
+    VOID,
+    IF,
+    ELSE,
+    THIS,
+    NULLPTR,
+    CONST,
+    NEW,
+    AND,
+    AMP,
+    OR,
+    NOT,
+    SCOPE,
+    SEMICOLON,
+    COMMA,
+    DOT,
+    COLON,
+    QUESTION,
+    SHARP,
+    OPER,
+    EQ_EQ,
+    NOT_EQ,
+    LT_EQ,
+    GT_EQ,
+    EQ,
+    PLUS,
+    MINUS,
+    POINTER,
+    DELIT,
+    MOD,
+    INC,
+    DEC,
+    PLUS_EQ,
+    MINUS_EQ,
+    MUL_EQ,
+    DIV_EQ,
+    MOD_EQ,
+    DEL,
+    NOEX,
+    LLS,
+    RLS,
+    LS,
+    RS,
+    LBRACE,
+    RBRACE,
+    RET,
+    TILDA,
+    LOSS,
+    BIG,
+    SHL,
+    SHR,
+    ARROW,
+    INCLUDE,
+    TRUE_,
+    FALSE_,
+    BOOL,
+    CHAR,
+    DOUBLE,
+    LONG,
+    SHORT,
+    INT_NUMBER,
+    FLOAT_NUMBER,
+    STRING_LITERAL,
+    CHAR_LITERAL,
+    ID
+};
+
+typedef struct
+{
+    char var[256];
+}YYSTYPE;
+
+extern YYSTYPE yylval;

@@ -1,9 +1,21 @@
 %{
   #include <stdio.h>
   #include <string.h>
-  #include<stdlib.h>
+  #include <stdlib.h>
+  #include "tokens.h"
 %}
+%x COMMENT
+%option yylineno
 %%
+"/*" {BEGIN(COMMENT);}
+<COMMENT>"*/" {BEGIN(INITIAL);}
+<COMMENT>\n {}
+<COMMENT>. {}
+<COMMENT><<EOF>> {
+    fprintf(stderr, "ERROR at line %d: unterminated comment\n", yylineno);
+    return 0;
+}
+"//"[^\n]* { }
 "class" {return CLASS;}
 "protected" {return PROTECT;}
 "public" {return PUBLIC;}
@@ -22,6 +34,20 @@
 "new" {return NEW;}
 "&&" {return AND;}
 "&" {return AMP;}
+"||" {return OR;}
+"<<" { return SHL;}
+">>" { return SHR;}
+"->" { return ARROW;}
+"#"[ \t]*"include" { return INCLUDE; }
+"%"  { return MOD; }
+"!"  { return NOT; }
+"++" { return INC; }
+"--" { return DEC; }
+"+=" { return PLUS_EQ; }
+"-=" { return MINUS_EQ; }
+"*=" { return MUL_EQ; }
+"/=" { return DIV_EQ; }
+"%=" { return MOD_EQ; }
 "::" { return SCOPE; }
 ";"  { return SEMICOLON; }
 ","  { return COMMA; }
@@ -32,7 +58,9 @@
 "<=" { return LT_EQ; }
 ">=" { return GT_EQ; }
 "=" {return EQ;}
-"+"  { return PLUS; }
+"+" { return PLUS; }
+"-" {return MINUS;}
+"/" {return DELIT;}
 "delete" {return DEL;}
 "*" {return POINTER;}
 "noexcept" {return NOEX;}
@@ -46,12 +74,25 @@
 "~" {return TILDA;}
 "<" {return LOSS;}
 ">" {return BIG;}
-"||" {return OR;}
-"<<" { return SHL; }
-">>" { return SHR; }
-"->" { return ARROW; }
+":" { return COLON; }
+"?" { return QUESTION; }
+"#" {return SHARP;}
+"true" { return TRUE_; }
+"false" { return FALSE_; }
+"bool" { return BOOL; }
+"char"  { return CHAR; }
+"double" { return DOUBLE; }
+"long"  { return LONG; }
+"short" { return SHORT; }
+[0-9]+\.[0-9]+ {strcpy(yylval.var,yytext); return FLOAT_NUMBER;}
 [0-9]+ {strcpy(yylval.var, yytext); return INT_NUMBER;}
-[a-zA-Z]+ {strcpy(yylval.var, yytext); return LITERAL;}
+\"([^\\\"\n]|\\.)*\" { strcpy(yylval.var, yytext); return STRING_LITERAL; }
+\'([^\\\'\n]|\\.)\' { strcpy(yylval.var, yytext); return CHAR_LITERAL; }
+[a-zA-Z_][a-zA-Z0-9_]* {strcpy(yylval.var, yytext); return ID;}
+[ \t\r\n]+ {}
+. {
+    fprintf(stderr, "ERROR at line %d: unknown symbol '%s'\n", yylineno, yytext);
+}
 %%
 int yywrap()
 {

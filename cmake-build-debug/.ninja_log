@@ -1,0 +1,10 @@
+# ninja log v6
+1	272	7978770932655759	build.ninja	49ad81c52c9db702
+9	65	7976095835718281	CMakeFiles/translator.dir/main.c.obj	2c111ec392a422d
+110	182	7976095836732523	translator.exe	4b35df6a3a5e7b65
+3	105	7976095835667243	CMakeFiles/translator.dir/lex.yy.c.obj	c6ef8e8640bb14b2
+4	168	7978771977037777	CMakeFiles/translator.dir/lex.yy.c.obj	c6ef8e8640bb14b2
+169	466	7978771978718848	translator.exe	4b35df6a3a5e7b65
+9	101	7979460069404457	CMakeFiles/translator.dir/main.c.obj	2c111ec392a422d
+3	134	7979460069304469	CMakeFiles/translator.dir/lex.yy.c.obj	c6ef8e8640bb14b2
+134	482	7979460070703724	translator.exe	4b35df6a3a5e7b65
