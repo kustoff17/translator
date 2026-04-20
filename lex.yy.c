@@ -1155,7 +1155,7 @@ YY_RULE_SETUP
 case 52:
 YY_RULE_SETUP
 #line 65 "newfile.l"
-{return POINTER;}
+{return STAR;}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP

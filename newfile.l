@@ -62,7 +62,7 @@
 "-" {return MINUS;}
 "/" {return DELIT;}
 "delete" {return DEL;}
-"*" {return POINTER;}
+"*" {return STAR;}
 "noexcept" {return NOEX;}
 "(" {return LLS;}
 ")" {return RLS;}
