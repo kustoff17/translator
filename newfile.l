@@ -77,8 +77,8 @@
 ":" { return COLON; }
 "?" { return QUESTION; }
 "#" {return SHARP;}
-"true" { return TRUE_; }
-"false" { return FALSE_; }
+"true" { strcpy(yylval.var,yytext); return BOOL_LITERAL;}
+"false" { strcpy(yylval.var,yytext); return BOOL_LITERAL;}
 "bool" { return BOOL; }
 "char"  { return CHAR; }
 "double" { return DOUBLE; }
