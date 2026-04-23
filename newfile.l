@@ -21,6 +21,9 @@
 "public" {return PUBLIC;}
 "int" {return INT;}
 "for" {return FOR;}
+"switch" {return SWITCH;}
+"case" {return CASE;}
+"default" {return DEFAULT;}
 "while" {return WHILE;}
 "try" {return TRY;}
 "catch" {return CATCH;}
